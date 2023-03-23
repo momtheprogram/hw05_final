@@ -8,7 +8,7 @@ from .forms import PostForm, CommentForm
 
 
 def index(request):
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().select_related('author')
     page_obj = paginator(request, post_list)
     title = 'Главная страница сайта Yatube'
     context = {
@@ -147,6 +147,6 @@ def profile_follow(request, username):
 def profile_unfollow(request, username):
     author = User.objects.get(username=username)
     following = Follow.objects.filter(user=request.user, author=author)
-    if following.exists():
+    if following:
         following.delete()
     return redirect('posts:profile', username=author.username)

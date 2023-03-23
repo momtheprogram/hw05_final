@@ -11,7 +11,7 @@ class PostURLTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.author = User.objects.create_user(username='username')
+        cls.author = User.objects.create_user('username')
         cls.group = Group.objects.create(
             title='Заголовок',
             slug='slug',
@@ -41,6 +41,8 @@ class PostURLTests(TestCase):
 
         self.authorized_client = Client()
         self.authorized_client.force_login(PostURLTests.author)
+
+        cache.clear()
 
     def test_urls_uses_correct_template(self):
         items = PostURLTests.url_templates_status_for_everybody.items()
@@ -83,6 +85,8 @@ class CacheTest(TestCase):
     def setUp(self):
         self.authorized_client = Client()
         self.authorized_client.force_login(CacheTest.author)
+
+        cache.clear()
 
     def test_cache(self):
         """ Кеширование главной страницы. """

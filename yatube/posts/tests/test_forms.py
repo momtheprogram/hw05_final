@@ -6,6 +6,7 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.cache import cache
 
 from posts.models import Post
 
@@ -47,6 +48,8 @@ class FormTest(TestCase):
     def setUp(self):
         self.authorized_client = Client()
         self.authorized_client.force_login(FormTest.author)
+
+        cache.clear()
 
     def test_create_post(self):
         self.assertEqual(Post.objects.count(), 1)
