@@ -38,9 +38,12 @@ def profile(request, username):
     page_obj = paginator(request, post_list)
     title = f'Профайл пользователя {username}'
     all_posts = post_list.count()
-    following = Follow.objects.filter(
+    following = (
+        request.user.is_authenticated
+        and Follow.objects.filter(
         author__following__user=request.user
     ).exists()
+    )
     context = {
         'page_obj': page_obj,
         'title': title,
@@ -137,7 +140,7 @@ def profile_follow(request, username):
     author = User.objects.get(username=username)
     if request.user != author:
         Follow.objects.get_or_create(user=request.user, author=author)
-    return redirect('posts:follow_index')
+    return redirect('posts:profile', username=author.username)
 
 
 @login_required
@@ -146,4 +149,4 @@ def profile_unfollow(request, username):
     following = Follow.objects.filter(user=request.user, author=author)
     if following.exists():
         following.delete()
-        return redirect('posts:profile', username=author)
+    return redirect('posts:profile', username=author.username)
