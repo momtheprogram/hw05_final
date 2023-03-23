@@ -1,0 +1,62 @@
+{% load static %}
+<header>
+    <!-- Использованы классы бустрапа для создания типовой навигации с логотипом -->
+    <!-- В дальнейшем тут будет создано полноценное меню -->
+    <nav class="navbar navbar-light" style="background-color: hsl(22, 100%, 95%)">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="{% static 'img/logo.png' %}" width="250" height="100" class="d-inline-block align-top" alt="">
+        </a>
+        {% comment %}
+      Меню - список пунктов со стандартными классами Bootsrap.
+      Класс nav-pills нужен для выделения активных пунктов 
+      {% endcomment %}
+      {% with request.resolver_match.view_name as view_name %} 
+      <ul class="nav nav-pills">
+        <li class="nav-item">              
+          <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" 
+             href="{% url 'about:author' %}"
+          >
+            Об авторе
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}" 
+          href="{% url 'about:tech' %}"
+          >
+          Технологии
+        </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name  == 'posts:post_create' %}active{% endif %}"
+          href="{% url 'posts:post_create' %}">Новая запись</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name  == 'password_change' %}active{% endif %}" 
+          href="{% url 'password_change' %}">Изменить пароль</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name  == 'users:logged_out' %}active{% endif %}" 
+          href="{% url 'users:logout' %}">Выйти</a>
+        </li>
+        <li class="nav-item">
+          Пользователь:<br> {{ user.username }}
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link {% if view_name  == 'users:login' %}active{% endif %}" 
+          href="{% url 'users:login' %}"
+          >Войти</a>
+        </li>
+        <li class=""> 
+          <a class="nav-link {% if view_name  == 'users:signup' %}active{% endif %}" 
+          href="{% url 'users:signup' %}">Регистрация</a>
+        </li>
+        {% endif %}
+        {% endwith %} 
+      </ul>
+      </div>
+    </nav>
+</header>
+  

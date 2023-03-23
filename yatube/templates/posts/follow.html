@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}Подписки{% endblock %}
+{% block header %}Подписки{% endblock %}
+{% load cache %}
+{% block content %}
+  <div class="container py-5">
+    {% cache 20 index_page page_obj%}
+    {% for post in page_obj %}
+    {% include 'includes/post.html' %}
+    {% endfor %}
+    {% endcache %}
+  </div>
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}
