@@ -1,7 +1,9 @@
 from django.test import TestCase, Client
 
+
 def setUp(self) -> None:
-        self.guest_client = Client()
+    self.guest_client = Client()
+
 
 class ViewTestClass(TestCase):
     def test_error_page(self):
