@@ -41,8 +41,8 @@ def profile(request, username):
     following = (
         request.user.is_authenticated
         and Follow.objects.filter(
-        author__following__user=request.user
-    ).exists()
+            author__following__user=request.user
+        ).exists()
     )
     context = {
         'page_obj': page_obj,
