@@ -34,7 +34,25 @@ ALLOWED_HOSTS = [
 
 
 # Application definition
-
+# Сгруппируй приложения. Так код будет более читабелен:
+#
+# ```
+# [
+# 1. Дефолтные
+# # пустая строка
+# 2. Твои приложения(posts, users, и тп)
+# # пустая строка
+# 3. Внешние приложения, вроде 'sorl.thumbnail'.
+# ]
+# ```
+#
+# А еще лучше, разбей на отдельные константы, каждая из которыех будет содержать отдельные пакеты.
+#
+# `DJANGO_APPS`: джанговские встроенные приложения
+# `THIRD_PARTY_APPS`: внешние приложения
+# `LOCAL_APPS`: разрабатываемые приложения
+#
+# `INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS`
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

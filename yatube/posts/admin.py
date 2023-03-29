@@ -11,7 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Post, PostAdmin) # Чтобы не выносить отдельно регистрацию модели, можно использовать декоратор- это предпочтительный способ. Особенно, когда моделей много. https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.register
 
 
 class GroupAdmin(admin.ModelAdmin):
@@ -27,7 +27,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('pk', 'post', 'author', 'text', 'created',)
     search_fields = ('text',)
     list_filter = ('author',)
-    search_fields = ('author', 'created')
+    search_fields = ('author', 'created') # дубль на 28 строке
 
 
 admin.site.register(Comment, CommentAdmin)

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{% if is_edit %}Редактировать пост{% else %}Новый пост{% endif %}{% endblock %}
-{% block header %}{% if is_edit %}Редактировать запись{% else %}Создание новой записи{% endif %}{% endblock %}№
+{% block header %}{% if is_edit %}Редактировать запись{% else %}Создание новой записи{% endif %}{% endblock %}№ {# такого блока нет в базовом шаблоне #}
 {% block content %}
 {% load user_filters %}
 <div class="row justify-content-center">

@@ -1,3 +1,4 @@
+# импорты не по pep8
 from django.db import models
 
 from django.contrib.auth import get_user_model
@@ -33,13 +34,13 @@ class Post(models.Model):
         return self.text[:15]
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ['-pub_date'] # Для неизменяемых последовательностей лучше использовать `tuple` https://www.programiz.com/python-programming/list-vs-tuples
         default_related_name = 'posts'
 
 
 class Group(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=50, null=False, unique=True)
+    slug = models.SlugField(max_length=50, null=False, unique=True) # не нужно указывать max_length для SlugField, по умолчанию он уже 50 символов. Указываем, только если нужно имзенить. `null=False,` уже идет по умолчанию. Лишний флаг
     description = models.TextField()
 
     def __str__(self):

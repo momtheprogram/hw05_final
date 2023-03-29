@@ -1,8 +1,11 @@
+# импорты не по pep8
 from django.urls import path
 from . import views
 
 app_name = 'posts'
 
+
+# удали учебные комментарии
 urlpatterns = [
     # Главная страница
     path('', views.index, name='index'),

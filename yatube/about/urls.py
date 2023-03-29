@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views # импорты не по pep8
 
 
 app_name = 'about'
