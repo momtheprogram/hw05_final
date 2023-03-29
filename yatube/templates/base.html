@@ -8,17 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Загружаем фав-иконки -->
     <link rel="icon" href="img/fav/fav.ico" type="image">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png"> {# ссылки луче формировать через {% static ... $} https://docs.djangoproject.com/en/4.1/howto/static-files/ #}
     <link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#000">
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> 
-    <title>{{ title }}</title>
+    <title>{{ title }}</title> {# вот тут самое место для нового блока, block title #}
   </head>
   <body>
-    <header>
+    <header> {#тег уже есть в includes/header.html#}
       {% include 'includes/header.html' %}
     </header>
     <main>
@@ -32,7 +32,7 @@
     <!-- border-top: создаёт тонкую линию сверху блока -->
     <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
     <!-- py-3: контент внутри размещается с отступом сверху и снизу -->
-    <footer class="border-top text-center py-3">
+    <footer class="border-top text-center py-3"> {#тег уже есть в includes/footer.html#}
       {% include 'includes/footer.html' %}
     </footer>
   </body>

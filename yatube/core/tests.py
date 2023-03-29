@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 
-
+# если это метод у тестированию, то он должен быть в ViewTestClass
 def setUp(self) -> None:
     self.guest_client = Client()
 
